@@ -8,7 +8,8 @@ connection.set_isolation_level(extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
 cursor = connection.cursor()
 
-cursor.execute(f"LISTEN new_person");
+cursor.execute(f"LISTEN new_person")
+
 
 def handle_new_person():
     print("Waiting for notifications on channel 'new_person'")
@@ -19,8 +20,10 @@ def handle_new_person():
             body = json.loads(notify.payload)
             print(f"new user! {body}")
 
-thread = threading.Thread(target=handle_new_person, daemon=True);
+
+thread = threading.Thread(target=handle_new_person, daemon=True)
 
 thread.start()
 
-while True: pass
+while True:
+    pass
